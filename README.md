@@ -24,10 +24,10 @@ Deve ser utilizado pelo terminal e utilizará argumentos no *`Shell`*.
 E, o site da loteria deve ser colocado para o programa baixar todos os resultados e realizar a análise.
 
 > [!TIP]
-> É interessante utilizar o modo *`Debug`* para melhor análise
+> É interessante utilizar o modo *`debug`* para melhor análise
 
 Além disso, haverá como trocar linguagem, para melhor entendimento.
-A seguir linguagens disponíveis
+\nA seguir linguagens disponíveis:
 
 | Linguagens | Status |
 |------------|--------|
