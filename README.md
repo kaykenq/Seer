@@ -27,9 +27,18 @@ E, o site da loteria deve ser colocado para o programa baixar todos os resultado
 > É interessante utilizar o modo *`debug`* para melhor análise
 
 Além disso, haverá como trocar linguagem, para melhor entendimento.
-\nA seguir linguagens disponíveis:
+</br>A seguir linguagens disponíveis:
 
 | Linguagens | Status |
 |------------|--------|
 |    EN-us   |    🟠 (Em andamento)  |
 |    PT-br   |    🟠 (Em andamento)   |
+
+#### 1.3.1 Opções
+No *`Shell`* haverá opções que necessitam, ou não, de argumentações.
+</br>A seguir as opções:
+
+| Opção | Argumento | Descrição |
+|-------|-----------|-----------|
+| debug |  <center>-</center>|  Demonstra com mais detalhes o que retorna ao console |
+
