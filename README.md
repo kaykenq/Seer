@@ -5,6 +5,12 @@ Projeto ainda não está feito, porém há ideias sobre o que fazer
 
 Apartir de agora serão demonstrados as ideias em tópicos.
 
+- [1 Sobre o projeto](#1-sobre-o-projeto)
+    - [1.1 O que é?](#11-o-que-é)
+    - [1.2 Como funcionará?](#12-como-funcionará)
+    - [1.3 Como usar?](#13-como-usar)
+        - [1.3.1 Opções](#131-opções)
+
 ## 1 Sobre o projeto
 
 ### 1.1 O que é?
