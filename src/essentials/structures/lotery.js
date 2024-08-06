@@ -14,7 +14,7 @@ module.exports = class StructuredData extends Base {
     this.parse(data)
   }
   
-  parse(data, op) {
+  parse(data) {
     if('valorArrecadado' in data) {
       this.amount = new AmountStructure(data)
     }
