@@ -70,7 +70,7 @@ A loteria possui 60 números, sendo necessário escolher 6 deles, porém, precis
 </br>$K = \binom{60}{6}$
 
 #### 2.2.2 Probabilidades
-Para poder obter as probabilidades e escolher a melhor sequência, preciso calcular a probabilidade, que farei desta maneira:
+Para obter as probabilidades e escolher a melhor sequência, preciso calcular a probabilidade, que farei desta maneira:
 </br>$P_{\text{total}} = \prod\limits_{n=1}^6P_{\text{n}}$
 
 > [!IMPORTANT]
