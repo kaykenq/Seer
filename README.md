@@ -52,7 +52,7 @@ No *`Shell`* haverá opções que necessitam, ou não, de argumentações.
 
 | Opção | Argumento | Descrição |
 |-------|-----------|-----------|
-| debug |  <center>-</center>|  Demonstra com mais detalhes o que retorna ao console |
+| debug |     -     |  Demonstra com mais detalhes o que retorna ao console |
 
 ## 2 Código
 Vou anotar importantes ideias e detalhes alheios sobre o código do projeto
