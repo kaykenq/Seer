@@ -73,6 +73,9 @@ A loteria possui 60 números, sendo necessário escolher 6 deles, porém, precis
 Para poder obter as probabilidades e escolher a melhor sequência, preciso calcular a probabilidade, que farei desta maneira:
 </br>$P_{\text{total}} = \prod\limits_{n=1}^6P_{\text{n}}$
 
+> [!IMPORTANT]
+> $P_n$ é probabilidade de um número da sequência de uma ordem 'n', ou seja, n = 1 escolherá o primeiro número, e assim adiante.
+
 ### 2.3 Threads
 Vou utilizar *threads* para realizar os cálculos e verificar as melhores probabilidades das sequências.
 
