@@ -10,6 +10,12 @@ Apartir de agora serão demonstrados as ideias em tópicos.
     - [1.2 Como funcionará?](#12-como-funcionará)
     - [1.3 Como usar?](#13-como-usar)
         - [1.3.1 Opções](#131-opções)
+- [2 Código](#2-código)
+    - [2.1 API](#21-api)
+    - [2.2 Cálculos](#22-cálculos)
+        - [2.2.1 Possibilidades](#221-possibilidades)
+        - [2.2.2 Probabilidades](#222-probabilidades)
+    - [2.3 Threads](#23-threads)
 
 ## 1 Sobre o projeto
 
@@ -63,6 +69,12 @@ A loteria possui 60 números, sendo necessário escolher 6 deles, porém, precis
 É de extrema importância calcular quantas são as possibilidades das sequências para criar um limite no loop. Portanto, calcularei desta maneira:
 </br>$\binom{60}{6}$
 
-### 2.2.2
+#### 2.2.2 Probabilidades
 Para poder obter as probabilidades e escolher a melhor sequência, preciso calcular a probabilidade, que farei desta maneira:
-$P_{\text{total}} = P_1 \cdot $
+</br>$P_{\text{total}} = \prod\limits_{n=1}^6P_{\text{n}}$
+
+### 2.3 Threads
+Vou utilizar *threads* para realizar os cálculos e verificar as melhores probabilidades das sequências.
+
+> [!TIP]
+> Agrupar as sequências em grupos simétricos, ou quase, para usar poucas threads e evitar maiores gastos de memória RAM.
