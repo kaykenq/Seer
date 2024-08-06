@@ -67,7 +67,7 @@ A loteria possui 60 números, sendo necessário escolher 6 deles, porém, precis
 
 #### 2.2.1 Possibilidades
 É de extrema importância calcular quantas são as possibilidades das sequências para criar um limite no loop. Portanto, calcularei desta maneira:
-</br>$K = \binom{60}{6} = 50,063,860$
+</br>$K = \binom{60}{6} = 50.063.860$
 
 #### 2.2.2 Probabilidades
 Para obter as probabilidades e escolher a melhor sequência, preciso calcular a probabilidade, que farei desta maneira:
