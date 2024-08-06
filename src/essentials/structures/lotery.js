@@ -1,7 +1,8 @@
 const AmountStructure = require('./amount.js');
 const ListStructure = require('./list.js');
+const Base = require('./Base.js');
 
-module.exports = class StructureData {
+module.exports = class StructuredData extends Base {
   constructor(data) {
     this.id = data.numero
     this._id = data.id
@@ -13,7 +14,7 @@ module.exports = class StructureData {
     this.parse(data)
   }
   
-  parse(data) {
+  parse(data, op) {
     if('valorArrecadado' in data) {
       this.amount = new AmountStructure(data)
     }

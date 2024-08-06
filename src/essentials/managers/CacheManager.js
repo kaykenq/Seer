@@ -1,0 +1,1 @@
+module.exports = class CacheManager extends Map {}

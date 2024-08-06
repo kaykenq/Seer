@@ -1,4 +1,6 @@
-module.exports = class InformationAboutLotteryStructures {
+const Base = require('./Base.js')
+
+module.exports = class InformationAboutLotteryStructures extends Base {
   constructor(data) {
     this.winningCities = data.listaMunicipioUFGanhadores
     this.informations = []
@@ -10,8 +12,8 @@ module.exports = class InformationAboutLotteryStructures {
       data.listaRateioPremio.forEach(lottery => {
         obj.hits = lottery.descricaoFaixa.replace(' acertos', '')
         obj.track = lottery.faixa
-        obj.winningNumbers = lottery.numeroDeGanhadores.toLocaleString('.')
-        obj.prize = lottery.valorPremio.toLocaleString('.')
+        obj.winningNumbers = super.localeString(lottery.numeroDeGanhadores)
+        obj.prize = super.localeString(lottery.valorPremio)
         this.informations.push(obj)
       })
     }
