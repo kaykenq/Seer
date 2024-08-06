@@ -48,3 +48,21 @@ No *`Shell`* haverá opções que necessitam, ou não, de argumentações.
 |-------|-----------|-----------|
 | debug |  <center>-</center>|  Demonstra com mais detalhes o que retorna ao console |
 
+## 2 Código
+Vou anotar importantes ideias e detalhes alheios sobre o código do projeto
+
+### 2.1 API
+A loteria possui uma API (`https://servicebus2.caixa.gov.br/portaldeloterias/api/megasena/x`). Portanto, consigo baixar os resultados utilizando-a.
+> [!NOTE]
+> Basta alterar `x` para qualquer número
+
+### 2.2 Cálculos
+A loteria possui 60 números, sendo necessário escolher 6 deles, porém, preciso calcular as possibilidades de criação de todas as sequências, e calcular as probabilidades das sequência (calcularei usando cada probabilidade de cada número)
+
+#### 2.2.1 Possibilidades
+É de extrema importância calcular quantas são as possibilidades das sequências para criar um limite no loop. Portanto, calcularei desta maneira:
+</br>$\binom{60}{6}$
+
+### 2.2.2
+Para poder obter as probabilidades e escolher a melhor sequência, preciso calcular a probabilidade, que farei desta maneira:
+$P_{\text{total}} = P_1 \cdot $
