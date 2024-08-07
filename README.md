@@ -74,10 +74,10 @@ Para obter as probabilidades e escolher a melhor sequência, preciso calcular a 
 </br>$P_{\text{total}} = \prod\limits_{n=1}^6P_{\text{n}}$
 
 > [!IMPORTANT]
-> $P_n$ é probabilidade de um número da sequência de uma ordem 'n', ou seja, n = 1 escolherá o primeiro número, e assim adiante.
+> $P_n$ é probabilidade de um número da sequência de uma ordem 'n', ou seja, $n = 1$ escolherá o primeiro número, e assim adiante.
 
 ### 2.3 Threads
 Vou utilizar *threads* para realizar os cálculos e verificar as melhores probabilidades das sequências.
 
 > [!TIP]
-> Agrupar as sequências em grupos simétricos, ou quase, para usar poucas threads e evitar maiores gastos de memória RAM.
+> Agrupar as sequências em grupos simétricos, ou quase, para usar poucas *threads* e evitar maiores gastos de memória *RAM*.
