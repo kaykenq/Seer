@@ -37,4 +37,21 @@ module.exports = class DataManager {
     
     return [key.split('.').reduce((acc, key) => acc[key], result), true]
   }
+  
+  get(key) {
+    const result = this.read()
+    
+    return result[key]
+  }
+  /**
+   * @description Get all Database's Schemes
+   * @returns {object}
+   * @example
+   * ```js
+   * <DataManager>.getAll()
+   * ```
+   */
+  getAll() {
+    return this.read()
+  }
 }
