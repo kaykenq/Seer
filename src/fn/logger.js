@@ -3,19 +3,16 @@ const { levels, meaning } = require('../utils/levels.json');
 const Keys = require("../utils/keys_logger.json");
 
 global_setup(level) {
-  Object.values(configuration_levels(level)).forEach(x => {
-    for(let key in x) {
-      global.log[x] = (...message) => print(x, chalk.bgBlack.white, ...message)
-    }
+  configuration_levels(level).forEach(x => {
+    global.log[x] = (...message) => print(x, chalk.bgBlack.white, ...message)
   })
 }
 
 function transform(level) {
-  let transformed_meanings = {}
-  transformed_meanings[level] = []
+  let transformed_meanings = []
   Object.values(meaning[level]).forEach(x => {
     for(let key of x) {
-      transformed_meanings[level].push(Key[x])
+      transformed_meanings.push(Key[x])
     }
   })
   
@@ -42,11 +39,11 @@ function print(key, color, ...message) {
 
 module.exports = class Console {
   constructor(level) {
-    this.level = level
+    this._main(level)
   }
   
-  _main() {
-    switch(this.level) {
+  _main(level) {
+    switch(level) {
       case 0:
         global_setup(0)
         break;
