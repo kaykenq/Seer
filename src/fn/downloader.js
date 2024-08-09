@@ -2,19 +2,21 @@ const Request = require("../essentials/HTTP.js");
 const CacheManager = require("../essentials/managers/CacheManager.js");
 const DataManager = require("../essentials/managers/DataManager.js");
 const InitializeClusters = require("../essentials/functions/process.js");
+const Save = require('./save.js');
 
 module.exports = class Downloader extends Request {
   constructor(options) {
     super(options)
     
     this.cache = new CacheManager()
-    this.result = new DataManager()
+    this.db = new DataManager("../storage/datas_lottery.json", { games: [] })
   }
   
   async get_from_specific_id(id) {
     const r = await super.make({ resource: id })
     
-    return this.cache.set(id, r)
+    this.cache.set(id, r)
+    return Save(this.cache, this.db)
   }
   
   async get_all_ids_range(startIndex, endIndex) {
