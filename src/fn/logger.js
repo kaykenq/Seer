@@ -32,13 +32,11 @@ const configuration_keys = {
   debug: chalk.bgBlack.bold.cyan("DEBUG"),
   request: chalk.bgBlack.bold.orange("REQUEST"),
   response: chalk.bgBlack.bold.magenta("RESPONSE"),
-  /*thread: `${this.debug}:` + chalk.bgBlack.bold.blue("THREAD"),
-  cluster: `${this.debug}:` + chalk.hex("#f77b55").bgBlack.bold("CLUSTER")*/
 }
 
 function print(key, color, ...message) {
   if(isMainThread) return console.log(`[${configuration_keys[key]}]`, color(...message))
-  else if (isMainThread) console.log(`[${configuration_keys[key]}:${chalk.hex("#f77b55").bgBlack.bold("THREAD")}] - [${chalk.hex("#24ab5e").bgBlack.bold(threadId)}]`, color(...message))
+  else console.log(`[${configuration_keys[key]}:${chalk.hex("#f77b55").bgBlack.bold("THREAD")}] - [${chalk.hex("#24ab5e").bgBlack.bold(threadId)}]`, color(...message))
   
 }
 
