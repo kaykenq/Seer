@@ -2,7 +2,7 @@ const cluster = require("node:cluster")
 const os = require("node:os")
 
 function check_avaibles_cpus_and_divide_by_slots(maximum) {
-  const cpus = os.cpus()
+  const cpus = os.availableParallelism()
   return [cpus, Math.ceil(maximum / cpus)]
 }
 

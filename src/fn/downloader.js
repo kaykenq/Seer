@@ -4,6 +4,8 @@ const DataManager = require("../essentials/managers/DataManager.js");
 const InitializeClusters = require("../essentials/functions/process.js");
 const Save = require('./save.js');
 
+// ta feio para caralho
+
 module.exports = class Downloader extends Request {
   constructor(options) {
     super(options)
@@ -16,7 +18,7 @@ module.exports = class Downloader extends Request {
     const r = await super.make({ resource: id })
     
     this.cache.set(id, r)
-    return Save(this.cache, this.db)
+    return Save.ids(this.cache, this.db)
   }
   
   async get_all_ids_range(startIndex, endIndex) {

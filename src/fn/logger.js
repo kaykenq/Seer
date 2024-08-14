@@ -1,6 +1,7 @@
 const chalk = require('chalk');
 const { levels, meaning } = require('../utils/levels.json');
 const Keys = require("../utils/keys_logger.json");
+const { isMainThread, threadId } = require("node:worker_threads")
 
 global_setup(level) {
   configuration_levels(level).forEach(x => {
@@ -30,11 +31,15 @@ const configuration_keys = {
   critical: chalk.bgRed.bold.white("CRITICAL"),
   debug: chalk.bgBlack.bold.cyan("DEBUG"),
   request: chalk.bgBlack.bold.orange("REQUEST"),
-  response: chalk.bgBlack.bold.purple("RESPONSE")
+  response: chalk.bgBlack.bold.magenta("RESPONSE"),
+  /*thread: `${this.debug}:` + chalk.bgBlack.bold.blue("THREAD"),
+  cluster: `${this.debug}:` + chalk.hex("#f77b55").bgBlack.bold("CLUSTER")*/
 }
 
 function print(key, color, ...message) {
-  console.log(`[${configuration_keys[key]}]`, color(...message))
+  if(isMainThread) return console.log(`[${configuration_keys[key]}]`, color(...message))
+  else if (isMainThread) console.log(`[${configuration_keys[key]}:${chalk.hex("#f77b55").bgBlack.bold("THREAD")}] - [${chalk.hex("#24ab5e").bgBlack.bold(threadId)}]`, color(...message))
+  
 }
 
 module.exports = class Console {
