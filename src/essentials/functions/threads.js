@@ -26,8 +26,8 @@ else {
         workerData: { urls: group }
       })
       
-      worker.on("message", log.thread(`[${threadId}] retornou:`, resolve))
-      worker.error("error", log.error(`[${threadId}] retornou:`, reject))
+      worker.on("message", log.debug('retornou:', resolve))
+      worker.error("error", log.error('retornou:', reject))
     }))
     
     return Promise.all(promises)

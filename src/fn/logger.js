@@ -13,7 +13,7 @@ function transform(level) {
   let transformed_meanings = []
   Object.values(meaning[level]).forEach(x => {
     for(let key of x) {
-      transformed_meanings.push(Key[x])
+      transformed_meanings.push(Key[key])
     }
   })
   
