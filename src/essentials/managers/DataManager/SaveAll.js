@@ -29,6 +29,7 @@ const functions = [save_id, save_response, save_winning_numbers]
 async function rec(obj) {
   const [id, res] = obj
   await (functions[id])(res)
+  log.info("sla mano")
 }
 
 function active_cluster(res) {
@@ -44,11 +45,11 @@ function active_cluster(res) {
 }
 
 function save(res) {
-  
+  active_cluster(res)
 }
 
 module.exports = (cache) => {
   cache.forEach((_, res) => {
-    save(id, res)
+    save(res)
   })
 }

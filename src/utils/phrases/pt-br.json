@@ -1,8 +1,6 @@
 {
   "datas": {
-    "saved": "o jogo %s foi salvo no banco de dados (id: %s)",
-    "saved_all_datas": "todos os dados foram salvos",
-    "saved_winning_number": "o jogo %s foi salvo no banco de dados (id: %s; número sorteado: %s)"
+    "saved": "o jogo %s foi salvo no banco de dados (id: %s)"
   }
   "questions": {
     "threads_number": "Quantas threads serão necessárias (padrão: 10)",
