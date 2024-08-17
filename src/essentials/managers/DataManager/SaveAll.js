@@ -21,7 +21,7 @@ async function save_response(res) {
 
 async function save_winning_numbers(res) {
   db = new WinningNumbersDataManager()
-  await db.update(({ winningNumbers }) => [res.id]: res.winningNumbers)
+  await db.update(({ winningNumbers }) => winningNumbers.push({ [res.id]: res.winningNumbers }))
 }
 
 const functions = [save_id, save_response, save_winning_numbers]
