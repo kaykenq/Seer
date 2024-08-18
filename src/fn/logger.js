@@ -1,12 +1,23 @@
 const chalk = require('chalk');
-const { levels, meaning } = require('../utils/levels.json');
+const Inquirer = require("inquirer");
 const Keys = require("../utils/keys_logger.json");
+const { levels, meaning } = require('../utils/levels.json');
 const { isMainThread, threadId } = require("node:worker_threads")
+const { isMaster } = require("node:cluster")
 
-global_setup(level) {
+function input(message, name) {
+  return Inquirer.prompt([{
+    type: 'input',
+    name: name || "USER_INPUT",
+    message: message
+  }])
+}
+
+function global_setup(level) {
   configuration_levels(level).forEach(x => {
     global.log[x] = (...message) => print(x, chalk.bgBlack.white, ...message)
   })
+  global.input = (message, type) => input(message, type)
 }
 
 function transform(level) {
@@ -35,8 +46,8 @@ const configuration_keys = {
 }
 
 function print(key, color, ...message) {
-  if(isMainThread) return console.log(`[${configuration_keys[key]}]`, color(...message))
-  else console.log(`[${configuration_keys[key]}:${chalk.hex("#f77b55").bgBlack.bold("THREAD")}] - [${chalk.hex("#24ab5e").bgBlack.bold(threadId)}]`, color(...message))
+  if(isMainThread || isMaster) return console.log(`[${configuration_keys[key]}]`, color(...message))
+  else console.log(`[${chalk.hex("#f77b55").bgBlack.bold("THREAD")}:${configuration_keys[key]}}] [${chalk.hex("#24ab5e").bgBlack.bold(threadId)}]:`, color(...message))
   
 }
 

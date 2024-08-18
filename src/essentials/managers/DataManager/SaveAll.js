@@ -33,7 +33,6 @@ async function rec(obj) {
 }
 
 function active_cluster(res) {
-  const numCpus = availableParallelism()
   if(isMaster) {
     for(let i = 0; i <= functions.length; i++) {
       const worker = fork()
