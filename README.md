@@ -1,5 +1,6 @@
 # Planejando
 Projeto ainda não está feito, porém há ideias sobre o que fazer
+
 > [!NOTE]
 > Anotarei todas as ideias aqui para uma análise melhor, e, obviamente, planejar o projeto de uma maneira mais eficaz.
 
@@ -18,6 +19,12 @@ Apartir de agora serão demonstrados as ideias em tópicos.
     - [2.3 Threads](#23-threads)
 
 ## 1 Sobre o projeto
+
+> [!WARNING]
+> Por favor, não imagine que este projeto seja igual aos *Bots* de cassino. Este projeto utiliza algoritimos conhecidos.
+
+> [!CAUTION]
+> Este é o projeto **OFICIAL**, e não é pago, e, caso programas iguais a estes serem vistos, por favor, considere um risco. Ademais, o projeto **NÃO** requere **QUAISQUER** dados **PESSOAS**.
 
 ### 1.1 O que é?
 O projeto recebe dados de qualquer loteria e faz uma análise sobre os resultados. Portanto, o projeto *`lotery`* tem o intuito de auxiliar na escolha de alternativas de jogos.
@@ -76,8 +83,8 @@ Para obter as probabilidades e escolher a melhor sequência, preciso calcular a 
 > [!IMPORTANT]
 > $P_n$ é probabilidade de um número da sequência de uma ordem 'n', ou seja, $n = 1$ escolherá o primeiro número, e assim adiante.
 
-### 2.3 Threads
-Vou utilizar *threads* para realizar os cálculos e verificar as melhores probabilidades das sequências.
+### 2.3 Threads e Clusters
+Vou utilizar *threads* e *clusters* para realizar os cálculos e verificar as melhores probabilidades das sequências.
 
 > [!TIP]
-> Agrupar as sequências em grupos simétricos, ou quase, para usar poucas *threads* e evitar maiores gastos de memória *RAM*.
+> Agrupar as sequências em grupos simétricos, ou quase, para usar poucos processos e evitar maiores gastos de memória *RAM*.
