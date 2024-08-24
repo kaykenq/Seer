@@ -24,7 +24,7 @@ Apartir de agora serão demonstrados as ideias em tópicos.
 > Por favor, não imagine que este projeto seja igual aos *Bots* de cassino. Este projeto utiliza algoritimos conhecidos.
 
 > [!CAUTION]
-> Este é o projeto **OFICIAL**, e não é pago, e, caso programas iguais a estes serem vistos, por favor, considere um risco. Ademais, o projeto **NÃO** requere **QUAISQUER** dados **PESSOAS**.
+> Esse é o projeto **oficial**, a qual não é pago, além disso, caso programas, iguais a esse, serem vistos, por favor, considere um risco. Ademais, o projeto **não** requere **quaisquer** dados **pessoais**.
 
 ### 1.1 O que é?
 O projeto recebe dados de qualquer loteria e faz uma análise sobre os resultados. Portanto, o projeto *`lotery`* tem o intuito de auxiliar na escolha de alternativas de jogos.
