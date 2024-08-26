@@ -1,4 +1,5 @@
 const MaxCPUS = os.availableParallelism()
+
 const final_result = []
 const result_filtered = []
 const groups = []
@@ -9,7 +10,7 @@ const quantityToFilters = 2
 process.env.completedWork = 0
 
 function createAnotherWorkerByEmergency(worker, code, signal) {
-  if(!final_result[0] && !cluster.workers.length < quantityToFilters) return;
+  if(!final_result[0] && cluster.workers.length >= quantityToFilters) return;
   for(let i = 0; i < cluster.workers.length - q; i++) {
     cluster.fork()
   }
@@ -28,8 +29,8 @@ function divide_by_groups(arr, id) {
     groups.push(arr.slice(i * result, (i + 1) * result))
   }
   
-  process.env.completedWork++
   if(process.env.completedWork == MaxCpus) return process.send([1, 1, 3])
+  process.env.completedWork++
 }
 
 function filterAllAppearedNumbers(games, ids) {
@@ -94,20 +95,20 @@ function filterAll(id, games) {
   const funcs = [filterAllAppearedNumbers, filterAllAppearedSequences];
   const res = funcs[id - 1](result_groups[id - 1])
   result_filtered.push(res)
-  return process.send([1, 0, 0, cluster.worker.id])
+  if(completedWork == quantityToFilters) return process.send([1, 0, 0, cluster.worker.id])
+  else return process.env.completedWork++
 }
 
 module.exports = (games) => {
   if(cluster.isPrimary) {
     for(let i = 0; i < MaxCPUS; i++) {
       const worker = cluster.fork({ done: 0 })
-      cluster.send({ worker })
       
       worker.on("message", ([bool, killSpecific, q, id]) => {
         if(bool) {
           process.env.completedWork = 0
           log.info()
-          if(!killSpecific) killAnSpecificProcessFromN(q)
+          if(!killSpecific) killASpecificProcessFromN(q)
           else cluster.workers[id].kill()
         }
       })
