@@ -1,21 +1,41 @@
-const MaximumCPUS = os.availableParallelism()
-const result_groups = []
+const MaxCPUS = os.availableParallelism()
+const final_result = []
 const result_filtered = []
+const groups = []
+const bestId = []
 
-function divide_by_groups(arr) {
-  const result = Math.ceil(arr.length / MaximumCPUS)
-  const groups = []
-  for(let i = 0; i <= result; i++) {
+const quantityToFilters = 2
+
+process.env.completedWork = 0
+
+function createAnotherWorkerByEmergency(worker, code, signal) {
+  if(!final_result[0] && !cluster.workers.length < quantityToFilters) return;
+  for(let i = 0; i < cluster.workers.length - q; i++) {
+    cluster.fork()
+  }
+}
+
+function killASpecificProcessFromN(n) {
+  for(const id in cluster.workers) {
+    if(!parseInt(id) >= n) return;
+    cluster.workers[id].kill()
+  }
+}
+
+function divide_by_groups(arr, id) {
+  const result = Math.ceil(arr.length / MaxCPUS)
+  for(let i = id - 1; i <= result; i++) {
     groups.push(arr.slice(i * result, (i + 1) * result))
   }
   
-  return groups;
+  process.env.completedWork++
+  if(process.env.completedWork == MaxCpus) return process.send([1, 1, 3])
 }
 
 function filterAllAppearedNumbers(games, ids) {
   const result = []
   const numbers = games.flat(games.length)
-  for(const target of ids) {
+  for(const target in ids) {
     const arr = numbers.filter(x => x == target)
     const times = arr.length
     const rating = times / numbers.length
@@ -27,7 +47,7 @@ function filterAllAppearedNumbers(games, ids) {
 
 function filterAllAppearedSequences(games, sequences) {
   const result = []
-  for(const target of sequences) {
+  for(const target in sequences) {
     const arr = games.filter((v, i) => v == target[i])
     const times = arr.length
     const rating = times / games.length
@@ -38,26 +58,25 @@ function filterAllAppearedSequences(games, sequences) {
   return result;
 }
 
-function BetterChoice(n) {
-  const nMappedByRating = n.map(x => x.rating)
-  const organizedRating = nMappedByRating.sort((a, b) => b - a)
+function BestChoice() {
+  const groupsMappedByRating = result_filtered[0].map(x => x.rating)
+  const organizedRating = groupsMappedByRating.sort((a, b) => b - a)
   const idByRating = []
-  for(const n of organizedRating) {
-    idByRating.push(n[nMappedByRating.indexOf(n)])
+  for(const n in organizedRating) {
+    idByRating.push(result_filtered[0][groupsMappedByRating.indexOf(n)])
   }
   
-  return idByRating.slice(0, 5)
+  return bestId.push(idByRating.slice(0, 5))
 }
 
-function checkRatingSequence(sequence 
-, s) {
-  const sequenceMappedByTarget = s.map(x => x.target)
-  const sequenceCreatedByTarget = sequence.map(x => x.target)
+function checkRatingSequence() {
+  const sequenceMappedByTarget = result_filtered[1].map(x => x.target)
+  const sequenceCreatedByTarget = bestId.map(x => x.target)
   const foundSequence = sequenceMappedByTarget.findIndex((list) => list.every((v, k) => v === sequenceCreatedByTarget[k]))
-  if(foundSequence !== -1) return s[foundSequence];
+  if(foundSequence !== -1) return final_result.push(result_filtered[1][foundSequence]);
   
-  const sequenceMappedByRating = sequence.map(x => x.rating)
-  return sequenceMappedByRating.reduce((a, b) => a * b);
+  const sequenceMappedByRating = bestId.map(x => x.rating)
+  return final_result.push(sequenceMappedByRating.reduce((a, b) => a * b));
 }
 
 const numbersGroups = (games) => games.flat(games.length)
@@ -67,7 +86,7 @@ const sequencesGroups = (games) => games
 function divide(id, games) {
   const args = [numbersGroups, sequencesGroups]
   const res = args[id - 1](games)
-  result_groups.push(res)
+  final_result.push(res)
   return process.send(true)
 }
 
@@ -75,33 +94,32 @@ function filterAll(id, games) {
   const funcs = [filterAllAppearedNumbers, filterAllAppearedSequences];
   const res = funcs[id - 1](result_groups[id - 1])
   result_filtered.push(res)
-  return process.send(true)
-}
-
-function run(games, worker) {
-  const betterChoice = BetterChoice(result_2)
-  const result = checkRatingSequence(betterChoice, result_1)
-  
-  worker.send({ result })
+  return process.send([1, 0, 0, cluster.worker.id])
 }
 
 module.exports = (games) => {
   if(cluster.isPrimary) {
-    for(let i = 0; i < MaximumCPUS; i++) {
+    for(let i = 0; i < MaxCPUS; i++) {
       const worker = cluster.fork({ done: 0 })
       cluster.send({ worker })
       
-      worker.on("message", (msg) => {
-        if(typeof msg == "boolean" && msg) {
-          process.env.done++
+      worker.on("message", ([bool, killSpecific, q, id]) => {
+        if(bool) {
+          process.env.completedWork = 0
           log.info()
-          if(process.env.done == MaximumCPUS) return process.exit(0)
+          if(!killSpecific) killAnSpecificProcessFromN(q)
+          else cluster.workers[id].kill()
         }
       })
+      worker.on("exit", createAWorkerByEmergency)
     }
   } else {
-    process.on("message", (msg) => {
-      run(games, msg.worker)
-    })
+    const group = divide_by_groups(cluster.worker.id, games)
+    if(!cluster.workers.length == quantityToFilters) return process.kill(0)
+    filterAll(cluster.worker.id, games)
   }
+  BestChoice()
+  checkRatingSequence()
+  
+  return final_result;
 }
