@@ -1,18 +1,16 @@
 const MaxCPUS = os.availableParallelism()
 
-const final_result = []
-const result_filtered = []
-const groups = []
-const bestId = []
+const result = []
+const bestNumbers = []
+const filtered = []
 
 const quantityToFilters = 2
 
 process.env.completedWork = 0
 
 function createAnotherWorkerByEmergency(worker, code, signal) {
-  if(!final_result[0] && cluster.workers.length >= quantityToFilters) return;
-  for(let i = 0; i < cluster.workers.length - q; i++) {
-    cluster.fork()
+  if(cluster.workers.length == MaxCPUS) return;
+  cluster.fork()
   }
 }
 
@@ -23,21 +21,11 @@ function killASpecificProcessFromN(n) {
   }
 }
 
-function divide_by_groups(arr, id) {
-  const result = Math.ceil(arr.length / MaxCPUS)
-  for(let i = id - 1; i <= result; i++) {
-    groups.push(arr.slice(i * result, (i + 1) * result))
-  }
-  
-  if(process.env.completedWork == MaxCpus) return process.send([1, 1, 3])
-  process.env.completedWork++
-}
-
 function filterAllAppearedNumbers(games, ids) {
   const result = []
   const numbers = games.flat(games.length)
-  for(const target in ids) {
-    const arr = numbers.filter(x => x == target)
+  for(let i = 0;i < ids.length; i++) {
+    const arr = numbers.filter(x => x == ids[i * cluster.worker.id])
     const times = arr.length
     const rating = times / numbers.length
     result.push({ target, times, rating })
@@ -48,8 +36,8 @@ function filterAllAppearedNumbers(games, ids) {
 
 function filterAllAppearedSequences(games, sequences) {
   const result = []
-  for(const target in sequences) {
-    const arr = games.filter((v, i) => v == target[i])
+  for(let i = 0; i < sequences.length; i++) {
+    const arr = games.filter((v, j) => v == sequences[i * cluster.worker.id][j])
     const times = arr.length
     const rating = times / games.length
     
@@ -59,50 +47,53 @@ function filterAllAppearedSequences(games, sequences) {
   return result;
 }
 
-function BestChoice() {
-  const groupsMappedByRating = result_filtered[0].map(x => x.rating)
+function divide_by_groups(arr) {
+  const result = Math.ceil(arr.length / MaxCPUS)
+  const groups = []
+  for(let i = cluster.worker.id - 1; i <= result; i++) {
+    groups.push(arr.slice(i * result, (i + 1) * result))
+  }
+  process.env.completedWork++
+  return groups
+}
+
+function BestChoice(filteredNumbers) {
+  const groupsMappedByRating = filteredNumbers.map(x => x.rating)
   const organizedRating = groupsMappedByRating.sort((a, b) => b - a)
   const idByRating = []
   for(const n in organizedRating) {
-    idByRating.push(result_filtered[0][groupsMappedByRating.indexOf(n)])
+    idByRating.push(filteredNumbers[0][groupsMappedByRating.indexOf(n)])
   }
   
-  return bestId.push(idByRating.slice(0, 5))
+  return bestNumbers.push(idByRating.slice(0, 5))
 }
 
-function checkRatingSequence() {
-  const sequenceMappedByTarget = result_filtered[1].map(x => x.target)
-  const sequenceCreatedByTarget = bestId.map(x => x.target)
+function checkRatingSequence(filteredSequences) {
+  const sequenceMappedByTarget = filteredSequences.map(x => x.target)
+  const sequenceCreatedByTarget = bestNumbers.map(x => x.target)
   const foundSequence = sequenceMappedByTarget.findIndex((list) => list.every((v, k) => v === sequenceCreatedByTarget[k]))
-  if(foundSequence !== -1) return final_result.push(result_filtered[1][foundSequence]);
+  if(foundSequence !== -1) return result.push(filteredSequences[foundSequence].rating);
   
-  const sequenceMappedByRating = bestId.map(x => x.rating)
-  return final_result.push(sequenceMappedByRating.reduce((a, b) => a * b));
+  const sequenceMappedByRating = bestNumbers.map(x => x.rating)
+  return result.push(sequenceMappedByRating.reduce((a, b) => a * b));
 }
 
 const numbersGroups = (games) => games.flat(games.length)
 
 const sequencesGroups = (games) => games
 
-function divide(id, games) {
-  const args = [numbersGroups, sequencesGroups]
-  const res = args[id - 1](games)
-  final_result.push(res)
-  return process.send(true)
-}
-
-function filterAll(id, games) {
-  const funcs = [filterAllAppearedNumbers, filterAllAppearedSequences];
-  const res = funcs[id - 1](result_groups[id - 1])
-  result_filtered.push(res)
-  if(completedWork == quantityToFilters) return process.send([1, 0, 0, cluster.worker.id])
-  else return process.env.completedWork++
+function filterAll(groups, games) {
+  const filteredNumbers = filterAllAppearedNumbers(games, numbersGroups(groups[cluster.worker.id]))
+  const filteredSequences = filterAllAppearedSequences(games, sequencesGroups(groups[cluster.worker.id]))
+  filtered[0].push(filteredNumbers) // this one for the filtered numbers 
+  filtered[1].push(filteredSequences) // and this another one for the filtered sequences
+  // This part of the code depends of Cluster ID to choose the groups so I don't need to worry about flooding my Filtered Array
 }
 
 module.exports = (games) => {
   if(cluster.isPrimary) {
     for(let i = 0; i < MaxCPUS; i++) {
-      const worker = cluster.fork({ done: 0 })
+      const worker = cluster.fork()
       
       worker.on("message", ([bool, killSpecific, q, id]) => {
         if(bool) {
@@ -115,12 +106,12 @@ module.exports = (games) => {
       worker.on("exit", createAWorkerByEmergency)
     }
   } else {
-    const group = divide_by_groups(cluster.worker.id, games)
+    const groups = divide_by_groups(games)
     if(!cluster.workers.length == quantityToFilters) return process.kill(0)
-    filterAll(cluster.worker.id, games)
+    filterAll(groups, games)
   }
-  BestChoice()
-  checkRatingSequence()
+  BestChoice(filtered[0])
+  checkRatingSequence(filtered[1])
   
-  return final_result;
+  return [bestNumbers, result];
 }
