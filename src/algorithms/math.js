@@ -4,20 +4,9 @@ const result = []
 const bestNumbers = []
 const filtered = []
 
-const quantityToFilters = 2
-
-process.env.completedWork = 0
-
 function createAnotherWorkerByEmergency(worker, code, signal) {
   if(cluster.workers.length == MaxCPUS) return;
   cluster.fork()
-  }
-}
-
-function killASpecificProcessFromN(n) {
-  for(const id in cluster.workers) {
-    if(!parseInt(id) >= n) return;
-    cluster.workers[id].kill()
   }
 }
 
@@ -53,7 +42,6 @@ function divide_by_groups(arr) {
   for(let i = cluster.worker.id - 1; i <= result; i++) {
     groups.push(arr.slice(i * result, (i + 1) * result))
   }
-  process.env.completedWork++
   return groups
 }
 
@@ -94,20 +82,10 @@ module.exports = (games) => {
   if(cluster.isPrimary) {
     for(let i = 0; i < MaxCPUS; i++) {
       const worker = cluster.fork()
-      
-      worker.on("message", ([bool, killSpecific, q, id]) => {
-        if(bool) {
-          process.env.completedWork = 0
-          log.info()
-          if(!killSpecific) killASpecificProcessFromN(q)
-          else cluster.workers[id].kill()
-        }
-      })
       worker.on("exit", createAWorkerByEmergency)
     }
   } else {
     const groups = divide_by_groups(games)
-    if(!cluster.workers.length == quantityToFilters) return process.kill(0)
     filterAll(groups, games)
   }
   BestChoice(filtered[0])
