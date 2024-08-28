@@ -4,7 +4,7 @@ const result = []
 const bestNumbers = []
 const filtered = []
 
-function createAnotherWorkerByEmergency(worker, code, signal) {
+function createAnotherWorkerEmergently(worker, code, signal) {
   if(cluster.workers.length == MaxCPUS) return;
   cluster.fork()
   }
@@ -66,13 +66,9 @@ function checkRatingSequence(filteredSequences) {
   return result.push(sequenceMappedByRating.reduce((a, b) => a * b));
 }
 
-const numbersGroups = (games) => games.flat(games.length)
-
-const sequencesGroups = (games) => games
-
 function filterAll(groups, games) {
-  const filteredNumbers = filterAllAppearedNumbers(games, numbersGroups(groups[cluster.worker.id]))
-  const filteredSequences = filterAllAppearedSequences(games, sequencesGroups(groups[cluster.worker.id]))
+  const filteredNumbers = filterAllAppearedNumbers(games, groups[cluster.worker.id])
+  const filteredSequences = filterAllAppearedSequences(games, groups[cluster.worker.id])
   filtered[0].push(filteredNumbers) // this one for the filtered numbers 
   filtered[1].push(filteredSequences) // and this another one for the filtered sequences
   // This part of the code depends of Cluster ID to choose the groups so I don't need to worry about flooding my Filtered Array
@@ -82,7 +78,7 @@ module.exports = (games) => {
   if(cluster.isPrimary) {
     for(let i = 0; i < MaxCPUS; i++) {
       const worker = cluster.fork()
-      worker.on("exit", createAWorkerByEmergency)
+      worker.on("exit", createAnotherWorkerEmergently)
     }
   } else {
     const groups = divide_by_groups(games)

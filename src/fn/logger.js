@@ -2,8 +2,6 @@ const chalk = require('chalk');
 const Inquirer = require("inquirer");
 const Keys = require("../utils/keys_logger.json");
 const { levels, meaning } = require('../utils/levels.json');
-const { isMainThread, threadId } = require("node:worker_threads")
-const { isMaster } = require("node:cluster")
 
 function input(message, name) {
   return Inquirer.prompt([{
@@ -45,10 +43,17 @@ const configuration_keys = {
   response: chalk.bgBlack.bold.magenta("RESPONSE"),
 }
 
+function content(key) {
+  const messageThreadOrClusterColor = (cOrt, id) => `${chalk.hex("#f77b55").bgBlack.bold(cOrt)} ${id}`
+  let m = ""
+  if(!cluster.isPrimary) m += messageThreadOrClusterColor('CLUSTER', cluster.worker.id)
+  else if (!worker_threads.isMainThread) m += messageThreadOrClusterColor('THREAD', worker_threads.threadId)
+  else return `[${chalk.bgBlack.bold.green("MASTER")} -> ${configuration_keys[key]}]`
+  return `[${m}] -> [${configuration_keys[key]}]`
+}
+
 function print(key, color, ...message) {
-  if(isMainThread || isMaster) return console.log(`[${configuration_keys[key]}]`, color(...message))
-  else console.log(`[${chalk.hex("#f77b55").bgBlack.bold("THREAD")}:${configuration_keys[key]}}] [${chalk.hex("#24ab5e").bgBlack.bold(threadId)}]:`, color(...message))
-  
+  return console.log(content(key), color(...message))
 }
 
 module.exports = class Console {
