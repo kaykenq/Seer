@@ -44,7 +44,7 @@ const configuration_keys = {
 }
 
 function content(key) {
-  const messageThreadOrClusterColor = (cOrt, id) => `${chalk.hex("#f77b55").bgBlack.bold(cOrt)} ${id}`
+  const messageThreadOrClusterColor = (cOrt, id) => ` ${chalk.hex("#f77b55").bgBlack.bold(cOrt)} ${id} `
   let m = ""
   if(!cluster.isPrimary) m += messageThreadOrClusterColor('CLUSTER', cluster.worker.id)
   else if (!worker_threads.isMainThread) m += messageThreadOrClusterColor('THREAD', worker_threads.threadId)
