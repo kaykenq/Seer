@@ -3,10 +3,10 @@
     "saved": "o jogo %s foi salvo no banco de dados (id: %s)"
   },
   "questions": {
-    "asnwers_yes_or_no": [{ 
+    "asnwers_yes_or_no": { 
         "positive": ["y", "yes", "yeah", "sim", "s", "ss"],
         "negative": ["n", "nn", "no", "nop", "não", "nao"]
-      }],
+      },
     "threads_number": "quantas threads serão necessárias? (padrão: 10; recomendado: %d)",
     "make_prediction": "o treino do modelo terminou. Tú desejas que o programa prossiga para a predição do próximo jogo? (S/n)",
     "update": "Tú desejas baixar a versão mais recente? (v: %s)",
