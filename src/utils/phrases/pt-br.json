@@ -23,7 +23,7 @@
     "important_file_deleted": "o arquivo %s foi deletado, porém ele é essencial para o funcionamente do programa. Tentarei recuperá-lo com os conteúdos.",
     "update_needed": "uma nova atualização está disponível para ser baixada (%s -> %s)",
     "backup_activated": "o modo backup foi ativado. Isso levará alguns segundos, por favor não interrompa o processo",
-    "auto_backup_on": "o modo auto backup foi escolhido pelo usuário, portanto o backup será realizado automaticamente a cada 6 horas"
+    "auto_backup_on": "o modo auto backup foi escolhido pelo usuário, portanto o backup será realizado automaticamente a cada %"
   },
   "cluster": {
     "cluster_dead": "houve uma interrupção (possível motivo: %s)"
