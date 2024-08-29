@@ -1,35 +1,31 @@
 const { version } = require("../../utils/paths.json");
 const HTTP = require("../HTTP.js");
+const ScreenLoad = require("./screenLoader.js");
 
 module.exports = class Version extends HTTP {
   constructor() {
     super()
     
-    this.rawURL = "https://github.com/kaykenq/lotery";
+    this.rawURL = "https://raw.githubusercontent.com/kaykenq/lotery/main/version";
     this.oldVersion = fs.readFileSync(version)
     this.newVersion = this.oldVersion
   }
   
   async getVersion() {
-    const res = super.httpREQUEST(this.rawURL)
+    const res = await super.httpREQUEST(this.rawURL)
     this.newVersion = res.data
   }
   
   checkIfNeedUpdate() {
     getVersion()
-    if(this.oldVersion !== this.newVersion) return update()
-    return;
+    if(this.oldVersion == this.newVersion) return;
+    log.warn()
+    input()
+    // fazer uma alteração aqui para pegar a resposta do usuário
   }
   
   update() {
-    log.warn()
-    input()
-    log.info()
-    let dotCount = 0;
-    const interval = setInterval(() => {
-      dotCount++
-      process.stdout.write(`${'.'.repeat(dotCount)}`)
-    }, 1000)
+    const Updating = ScreenLoad('')
     const gitPull = child_process.spawn('git', ['pull'], {
       stdio: "ignore",
       detached: true

@@ -43,11 +43,11 @@
   },
   "info": {
     "file_recovered": "o arquivo %s foi recuperado com sucesso",
-    "content_revovered": "o conteúdo do arquivo foi recuperado"
+    "content_revovered": "o conteúdo do arquivo foi recuperado",
+    "updating": "atualizando"
   },
   "critical": {
     "fail_file_recover": "a recuperação do arquivo %s falhou, pois %s",
     "fail_content_recover": "a recuperação dos dados do arquivo %s falhou, portanto, deverá ser refeito."
-  },
-  "load_bar": ["|", "/", "-", "\\"]
+  }
 }
