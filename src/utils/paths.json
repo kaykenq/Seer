@@ -3,5 +3,6 @@
   "response_storage": "./src/storage/response-storage.json",
   "winningNumbers_storage": "./src/storage/winningNumbers-storage.json",
   "ids_storages": "./src/storage/ids-storage.json",
-  "model_storage": "./src/storage/model-storage.json"
+  "model_storage": "./src/storage/model-storage.json",
+  "version": "./version"
 }
