@@ -1,12 +1,53 @@
 {
   "datas": {
     "saved": "o jogo %s foi salvo no banco de dados (id: %s)"
-  }
+  },
   "questions": {
-    "threads_number": "Quantas threads serão necessárias (padrão: 10)",
-  }
+    "asnwers_yes_or_no": [{ 
+        "positive": ["y", "yes", "yeah", "sim", "s", "ss"],
+        "negative": ["n", "nn", "no", "nop", "não", "nao"]
+      }]
+    "threads_number": "quantas threads serão necessárias? (padrão: 10; recomendado: %d)",
+    "make_prediction": "o treino do modelo terminou. Tu desejas que o programa prossiga para a predição do próximo jogo? (S/n)",
+    "update": "desejas baixar a versão mais recente? (v: %s)",
+    "backup": "desejas fazer um backup dos dados obtidos durante as análises?"
+  },
   "threads": {
     "returned": "retornou",
     "downloaded_response": "salvou o resultado de %s"
-  }
+  },
+  "warns": {
+    "recommended_cpu_not_achieved": "o número de núcleos recomendado é %d, portanto haverá uma possível demora. (número de núcleos disponíveis: %d)",
+    "no_cpus": "o dispotivo %s não possui núcleos, então será trocado para %s, porém pode haver atrasos",
+    "memory_leak": "o uso da memória excedeu/atingiu o limite de %s ram (uso: %d)",
+    "important_file_deleted": "o arquivo %s foi deletado, porém ele é essencial para o funcionamente do programa. Tentarei recuperá-lo com os conteúdos.",
+    "update_needed": "uma nova atualização está disponível para ser baixada (%s -> %s)",
+    "backup_activated": "o modo backup foi ativado. Isso levará alguns segundos, por favor não interrompa o processo",
+    "auto_backup_on": "o modo auto backup foi escolhido pelo usuário, portanto o backup será realizado automaticamente a cada 6 horas"
+  },
+  "cluster": {
+    "cluster_dead": "houve uma interrupção (possível motivo: %s)"
+    "created_cluster": "o Worker %d criado com sucesso",
+    "created_cluster_emergently": "o Worker %d foi criado repentinamente devido a uma necessidade",
+    "completed_task": "terminou a tarefa com sucesso",
+    "status": "%s (%d/%d)"
+  },
+  "model": {
+    "updated": "o modelo foi atualizado com novas informações",
+    "trained": "o treino do modelo foi concluido com sucesso",
+    "training": "o modelo está treinando (%d/%d)"
+  },
+  "error": {
+    "wrong_asnwer": "sua resposta está invalida, por favor insira %s",
+    "any_error": "algum erro inesperado ocorreu. Erro: %s",
+  },
+  "info": {
+    "file_recovered": "o arquivo %s foi recuperado com sucesso",
+    "content_revovered": "o conteúdo do arquivo foi recuperado"
+  },
+  "critical": {
+    "fail_file_recover": "a recuperação do arquivo %s falhou, pois %s",
+    "fail_content_recover": "a recuperação dos dados do arquivo %s falhou, portanto, deverá ser refeito."
+  },
+  "load_bar": ["|", "/", "-", "\\"]
 }

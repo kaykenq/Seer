@@ -3,6 +3,7 @@ const MaxCPUS = os.availableParallelism()
 const result = []
 const bestNumbers = []
 const filtered = []
+const recommended = 4
 
 function createAnotherWorkerEmergently(worker, code, signal) {
   if(cluster.workers.length == MaxCPUS) return;
