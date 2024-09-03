@@ -25,7 +25,7 @@ Apartir de agora serão demonstrados as ideias em tópicos.
 > Esse é o projeto **oficial**, a qual não é pago, além disso, caso programas, iguais a esse, serem vistos, por favor, considere um risco. Ademais, o projeto **não** requere **quaisquer** dados **pessoais**.
 
 ### 1.1 O que é?
-O projeto recebe dados de qualquer loteria e faz uma análise sobre os resultados. Portanto, o projeto *`lotery`* tem o intuito de auxiliar na escolha de alternativas de jogos.
+O projeto recebe dados de qualquer loteria e faz uma análise sobre os resultados. Portanto, o projeto *`Seer`* tem o intuito de auxiliar na escolha de alternativas de jogos.
 
 > [!IMPORTANT]
 > Apenas jogos de **LOTERIA**
@@ -90,6 +90,6 @@ Vou utilizar *threads* e *clusters* para realizar os cálculos, verificar as mel
 ### [2.4 TensorFlow.js](https://www.tensorflow.org/)
 TensorFlow.js é um projeto a qual cria-se uma rede neural no código, portanto o faz aprender qualquer material.
 </br>
-</br>O uso do módulo "TensorFlow.js" é importante, haja vista a necessidade do código aprender a lógica dos números sorteados, ou, ao menos, tentar prever com uma certa precisão os próximos números.
+</br>O uso do módulo `TensorFlow.js` é importante, haja vista a necessidade do código aprender a lógica dos números sorteados, ou, ao menos, tentar prever com uma certa precisão os próximos números.
 
 <sub> *Para mais informações de instalação e utilização clique [aqui](https://www.tensorflow.org/install)* </sub>
