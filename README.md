@@ -92,4 +92,4 @@ TensorFlow.js é um projeto a qual cria-se uma rede neural no código, portanto 
 </br>
 </br>O uso do módulo "TensorFlow.js" é importante, haja vista a necessidade do código aprender a lógica dos números sorteados, ou, ao menos, tentar prever com uma certa precisão os próximos números.
 
-<small> Para mais informações de instalação e utilização clique [aqui](https://www.tensorflow.org/install) </small>
+<sub> *`Para mais informações de instalação e utilização clique [aqui](https://www.tensorflow.org/install)`* </sub>
