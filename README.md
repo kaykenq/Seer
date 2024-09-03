@@ -1,4 +1,4 @@
-# Planejando
+# Seer
 Projeto ainda não está feito, porém há ideias sobre o que fazer
 
 > [!NOTE]
