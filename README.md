@@ -16,14 +16,12 @@ Apartir de agora serão demonstrados as ideias em tópicos.
     - [2.2 Cálculos](#22-cálculos)
         - [2.2.1 Possibilidades](#221-possibilidades)
         - [2.2.2 Probabilidades](#222-probabilidades)
-    - [2.3 Threads](#23-threads)
+    - [2.3 Threads e Clusters](#23-threads-e-clusters)
+    - [2.4 TensorFlow.js](#24-tensorflow.js)
 
 ## 1 Sobre o projeto
 
-> [!WARNING]
-> Por favor, não imagine que este projeto seja igual aos *Bots* de cassino. Este projeto utiliza algoritimos conhecidos.
-
-> [!CAUTION]
+> [!IMPORTANT]
 > Esse é o projeto **oficial**, a qual não é pago, além disso, caso programas, iguais a esse, serem vistos, por favor, considere um risco. Ademais, o projeto **não** requere **quaisquer** dados **pessoais**.
 
 ### 1.1 O que é?
@@ -84,7 +82,14 @@ Para obter as probabilidades e escolher a melhor sequência, preciso calcular a 
 > $P_n$ é probabilidade de um número da sequência de uma ordem 'n', ou seja, $n = 1$ escolherá o primeiro número, e assim adiante.
 
 ### 2.3 Threads e Clusters
-Vou utilizar *threads* e *clusters* para realizar os cálculos e verificar as melhores probabilidades das sequências.
+Vou utilizar *threads* e *clusters* para realizar os cálculos, verificar as melhores probabilidades das sequências, e baixar os conteúdos da loteria.
 
 > [!TIP]
 > Agrupar as sequências em grupos simétricos, ou quase, para usar poucos processos e evitar maiores gastos de memória *RAM*.
+
+### [2.4 TensorFlow.js](https://www.tensorflow.org/)
+TensorFlow.js é um projeto a qual cria-se uma rede neural no código, portanto o faz aprender qualquer material.
+</br>O uso do módulo "TensorFlow.js" é importante, haja vista a necessidade do código aprender a lógica dos números sorteados, ou, ao menos, tentar prever com uma certa precisão os próximos números.
+
+> [!NOTE]
+> Para mais informações de instalação e utilização clique [aqui](https://www.tensorflow.org/install)

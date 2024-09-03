@@ -8,7 +8,7 @@
         "negative": ["n", "nn", "no", "nop", "não", "nao"]
       },
     "threads_number": "quantas threads serão necessárias? (padrão: 10; recomendado: %d)",
-    "make_prediction": "o treino do modelo terminou. Tú desejas que o programa prossiga para a predição do próximo jogo? (S/n)",
+    "make_prediction_after_the_training": "o treino do modelo terminou. Tú desejas que o programa prossiga para a predição do próximo jogo? (S/n)",
     "update": "Tú desejas baixar a versão mais recente? (v: %s)",
     "backup": "Tú desejas fazer um backup dos dados obtidos durante as análises?"
   },
@@ -18,9 +18,9 @@
   },
   "warns": {
     "recommended_cpu_not_achieved": "o número de núcleos recomendado é %d, portanto haverá uma possível demora. (número de núcleos disponíveis: %d)",
-    "no_cpus": "o dispotivo %s não possui núcleos, então será trocado para %s, porém pode haver atrasos",
-    "memory_leak": "o uso da memória excedeu/atingiu o limite de %s ram (uso: %d)",
-    "important_file_deleted": "o arquivo %s foi deletado, porém ele é essencial para o funcionamente do programa. Tentarei recuperá-lo com os conteúdos.",
+    "no_cpus": "o dispotivo %s não possui núcleos, então será trocado para %s. Porém pode haver atrasos",
+    "memory_leak": "o uso da memória excedeu/atingiu o limite de %d ram (uso: %d)",
+    "important_file_deleted": "o arquivo %s foi deletado, porém ele é essencial para o funcionamento do programa. Tentarei recuperá-lo com os conteúdos.",
     "update_needed": "uma nova atualização está disponível para ser baixada (%s -> %s)",
     "backup_activated": "o modo backup foi ativado. Isso levará alguns segundos, por favor não interrompa o processo",
     "auto_backup_on": "o modo auto backup foi escolhido pelo usuário, portanto o backup será realizado automaticamente a cada %"
