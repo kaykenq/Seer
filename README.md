@@ -1,10 +1,5 @@
 # Seer
-Projeto ainda não está feito, porém há ideias sobre o que fazer
-
-> [!NOTE]
-> Anotarei todas as ideias aqui para uma análise melhor, e, obviamente, planejar o projeto de uma maneira mais eficaz.
-
-Apartir de agora serão demonstrados as ideias em tópicos.
+O futuro é incerto. Nossos números não.
 
 - [1 Sobre o projeto](#1-sobre-o-projeto)
     - [1.1 O que é?](#11-o-que-é)

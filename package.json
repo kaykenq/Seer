@@ -1,16 +1,25 @@
 {
-  "name": "lotery",
-  "version": "1.0.0",
-  "description": "",
+  "name": "seer",
+  "version": "0.0.1-beta",
+  "description": "O Prisma da Sorte",
   "main": "index.js",
   "scripts": {},
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "kaykenq",
+  "license": " GPL-3.0",
   "dependencies": {
     "axios": "^1.7.3",
     "chalk": "^4.1.2",
     "inquirer": "^10.1.8",
     "lowdb": "^7.0.1"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kaykenq/Seer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kaykenq/Seer/issues"
+  },
+  "homepage": "https://github.com/kaykenq/Seer#readme"
 }
